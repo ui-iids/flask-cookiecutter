@@ -5,7 +5,7 @@ from flask import Flask
 
 api_prefix = "example"
 api_title = "Example API"
-api_version = "0.1"
+api_version = "1"
 
 
 blp = Blueprint(
@@ -26,11 +26,6 @@ class Lorem(MethodView):
     def get(self):
         "Return a short Lorem Ipsum text."
         return {"body": "Lorem Ipsum Dolor Sit Amet"}
-
-
-@blp.errorhandler(404)
-def handle_not_found(e):
-    return {}, 404
 
 
 def register_api(app: Flask):
