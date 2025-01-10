@@ -1,6 +1,6 @@
-from .example import example_api_v1
+from .example import register_api
 from flask import Flask
 
 
 def register_apis(app: Flask):
-    app.register_blueprint(example_api_v1)
+    register_api(app)

@@ -1,1 +1,1 @@
-from .blueprint import example_api
+from .blueprint import register_api

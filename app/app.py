@@ -4,6 +4,7 @@ from werkzeug import exceptions
 from collections import namedtuple
 
 from .pages import pages
+from .api import register_apis
 
 
 def create_app(config_filename="config.toml", config_override={}):
@@ -22,6 +23,8 @@ def create_app(config_filename="config.toml", config_override={}):
     app.config.from_file(config_filename, load=tomlload, text=False, silent=True)
     app.config.from_object(namedtuple("Config", config_override)(**config_override))
     app.config.from_envvar("APP_CONFIG_FILE", silent=True)
+
+    register_apis(app)
 
     if app.config.get("SERVE_PWA"):
 
