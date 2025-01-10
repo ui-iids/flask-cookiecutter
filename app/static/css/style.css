@@ -10,20 +10,81 @@ body {
     width: 100%;
     padding: 0px;
     margin: 0px;
+    background-color: #FFFFFF;
+    color: #191919;
+    font-size: 21px;
+}
+
+a {
+    color: #F1B300;
+    font-weight: normal;
 }
 
 .main-header {
     width: 100%;
-    background-color: gray;
+    background-color: #191919;
+    color: #F1B300;
     padding: 0px;
     margin: 0px;
     flex: none;
+    max-height: 200px;
+}
+
+.main-header a {
+    color: #F1B300;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.app-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.main-header .header-content-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+    align-items: end;
+}
+
+.main-header img {
+    max-height: 60px;
+}
+
+.main-header .header-mid {
+    display: flex;
+    justify-content: center;
 }
 
 .main-footer {
     width: 100%;
-    background-color: lightgray;
+    background-color: #191919;
+    color: #FFFFFF;
+}
+
+.main-footer .footer-content-wrap {
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 30px 0px;
+    width: 100%;
+    max-height: 200px;
+}
+
+.main-footer .footer-mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.main-footer img {
+    max-width: 1024px;
+    max-height: 100px;
 }
 
 .layout {
@@ -45,7 +106,8 @@ body {
     margin: 0;
     padding: 0;
     width: 25%;
-    background-color: #f1f1f1;
+    background-color: #808080;
+    color: #191919;
     height: 100%;
     /* Full height */
     /* Make it stick, even on scroll */
