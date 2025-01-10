@@ -3,7 +3,7 @@ from tomllib import load as tomlload
 from werkzeug import exceptions
 from collections import namedtuple
 
-from app.pages.blueprint import pages
+from .pages import pages
 
 
 def create_app(config_filename="config.toml", config_override={}):
