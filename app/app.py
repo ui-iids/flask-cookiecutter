@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_file
 from tomllib import load as tomlload
 from werkzeug import exceptions
 from collections import namedtuple
+from sassutils.wsgi import SassMiddleware
 
 from .pages import pages
 from .api import register_apis
@@ -23,6 +24,10 @@ def create_app(config_filename="config.toml", config_override={}):
     app.config.from_file(config_filename, load=tomlload, text=False, silent=True)
     app.config.from_object(namedtuple("Config", config_override)(**config_override))
     app.config.from_envvar("APP_CONFIG_FILE", silent=True)
+
+    app.wsgi_app = SassMiddleware(
+        app.wsgi_app, {"app": ("static/sass", "static/css", "/static/css")}
+    )
 
     register_apis(app)
 
