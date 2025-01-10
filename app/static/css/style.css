@@ -1,0 +1,80 @@
+html {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.main-header {
+    width: 100%;
+    background-color: gray;
+    padding: 0px;
+    margin: 0px;
+    flex: none;
+}
+
+.main-footer {
+    width: 100%;
+    background-color: lightgray;
+    text-align: center;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.center-panel {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+}
+
+.side-nav {
+    min-width: 150pt;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #f1f1f1;
+    height: 100%;
+    /* Full height */
+    /* Make it stick, even on scroll */
+    overflow: auto;
+    /* Enable scrolling if the sidenav has too much content */
+}
+
+.side-nav ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    background-color: lightblue;
+}
+
+.side-nav ul li {
+    margin: 0px;
+    padding: 0px;
+    font-size: 22pt;
+}
+
+.side-nav ul li.active {
+    background-color: blue;
+}
+
+.side-nav a {
+    color: black;
+}
+
+.content {
+    margin: 10px;
+    flex-grow: 1;
+}

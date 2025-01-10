@@ -1,0 +1,29 @@
+[tool.poetry]
+packages = [{ include = "app" }]
+name = "iids-flask-cookiecutter"
+version = "0.1"
+description = "IIDS Cookiecutter Python-Flask Project"
+authors = ["cbradford@uidaho.edu"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">3.9"
+flask = "^3.1.0"
+flask-smorest = "^0.45.0"
+gunicorn = "^23.0.0"
+pyyaml = "^6.0.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+coverage = "^7.6.10"
+black = "^24.10.0"
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["/app/static/*", "/app/templates/*"]
+
+[tool.coverage.report]
+fail_under = 95

@@ -1,0 +1,124 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "dev-server",
+            "type": "shell",
+            "command": "flask run --debug",
+            "problemMatcher": {
+                "owner": "python",
+                "fileLocation": "absolute",
+                "pattern": [
+                    {
+                        "regexp": "^\\s*File \"(.*?)\", line (\\d+), in (.*)$",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3
+                    },
+                    {
+                        "regexp": "^\\s*(.*?): (.*)$",
+                        "message": 2
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ", reloading$",
+                    "endsPattern": "^\\s*\\* Debugger is active!$"
+                }
+            },
+            "isBackground": true,
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "launch browser",
+            "type": "shell",
+            "command": "python -m webbrowser http://localhost:5000/",
+            "problemMatcher": [
+                "$python"
+            ],
+            "dependsOn": [
+                "dev-server"
+            ],
+            "runOptions": {
+                "runOn": "folderOpen",
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "test coverage",
+            "type": "shell",
+            "command": "coverage run --branch -m pytest",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": [
+                "$python"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "test coverage view",
+            "type": "shell",
+            "command": "coverage report",
+            "dependsOn": [
+                "test coverage"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "test coverage html render",
+            "type": "shell",
+            "command": "coverage html",
+            "dependsOn": [
+                "test coverage"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "test coverage html serve",
+            "type": "shell",
+            "command": "python -m http.server --directory htmlcov 5002",
+            "isBackground": true,
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "dependsOn": [
+                "test coverage html render"
+            ],
+            "problemMatcher": {
+                "owner": "python",
+                "pattern": [
+                    {
+                        "regexp": "\"GET (.*?) HTTP/1.1\" 404",
+                        "file": 1,
+                        "message": 0,
+                        "kind": "file"
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Executing task: python -m http.server",
+                    "endsPattern": "^Serving HTTP on :: "
+                }
+            }
+        },
+        {
+            "label": "test coverage html view",
+            "type": "shell",
+            "command": "python -m webbrowser http://localhost:5002/",
+            "group": "test",
+            "dependsOn": [
+                "test coverage html serve"
+            ]
+        }
+    ]
+}
