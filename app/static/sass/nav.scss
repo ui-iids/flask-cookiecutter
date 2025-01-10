@@ -6,37 +6,34 @@
     padding: 0;
     background-color: #261882;
     color: #191919;
-    /* Full height */
-    /* Make it stick, even on scroll */
     overflow: auto;
-    /* Enable scrolling if the sidenav has too much content */
-}
 
-.side-nav .nav-open {
-    width: 200px;
-}
+    &.nav-open {
+        width: 200px;
+    }
 
-.side-nav .nav-closed {
-    width: 0px;
-}
+    &.nav-closed {
+        width: 0px;
+    }
 
-.side-nav ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-    background-color: #5E48FF;
-}
+    ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        background-color: #5E48FF;
+    }
 
-.side-nav ul li {
-    margin: 0px;
-    padding: 0px;
-    font-size: 22pt;
-}
+    li {
+        margin: 0px;
+        padding: 0px;
+        font-size: 22pt;
+    }
 
-.side-nav ul li.active {
-    background-color: #034441;
-}
+    li.active {
+        background-color: #034441;
+    }
 
-.side-nav a {
-    color: black;
+    a {
+        color: black;
+    }
 }
