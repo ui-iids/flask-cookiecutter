@@ -1,5 +1,5 @@
 from tempfile import NamedTemporaryFile
-from application_name import create_app
+from project_name import create_app
 
 
 def test_create_app_handles_no_file():

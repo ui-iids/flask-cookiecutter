@@ -1,5 +1,5 @@
 import json
-from application_name.app import create_app
+from project_name.app import create_app
 
 
 def test_pwa_manifest(client):

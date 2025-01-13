@@ -4,7 +4,7 @@ from pathlib import Path
 from flask import Flask
 
 sys.path.append(str(Path(__file__).absolute().parent.parent))
-from application_name import create_app
+from project_name import create_app
 
 
 @pytest.fixture()
