@@ -8,7 +8,9 @@
     <ul id="left-navigation">
         {% for href, id, caption in navigation_bar %}
         <li {% if id==active_page %} class="active" {% endif %}>
-            <a href="{{ href|e }}">{{ caption|e }}</a>
+            <a href="{{ href|e }}">
+                <span class="side-nav-label">{{ caption|e }}</span>
+            </a>
         </li>
         {% endfor %}
     </ul>
