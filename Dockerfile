@@ -25,4 +25,4 @@ COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 COPY . .
 
-ENTRYPOINT ["gunicorn", "-w" "4", "project_name:app", "--bind"]
+ENTRYPOINT ["gunicorn"]
