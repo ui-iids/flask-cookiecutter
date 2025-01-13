@@ -4,19 +4,23 @@ This template is intended as a jumping-off point for IIDS flask projects, or for
 
 ## Usage
 
-
+This is intended to be used with the github "Use this template" button, rather than a fork.
 
 ## Features
+
+Here's a rough wishlist for a feature-complete flask cookiecutter:
 
 * [x] Flask App quick setup 
 * [x] Static page serving
 * [x] Compiled SCSS
 * [x] Optional Progressive Web Application serving
-* [] Offline PWA Behavior
+* [ ] Offline PWA Behavior
 * [x] Automatic, versioned API documentation/specifications and interface
-* [] Deployable Docker file with Guincorn WSGI Host
-* [] Automatic test deployment
-* [] Automatic live deployment
+* [ ] Deployable Docker file with Guincorn WSGI Host
+* [ ] Automatic test deployment
+* [ ] Automatic live deployment
+* [ ] Database connection template
+* [ ] Secrets management
 
 ## Structure
 
