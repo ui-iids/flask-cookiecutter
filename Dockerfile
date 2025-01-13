@@ -1,4 +1,4 @@
-FROM python:3.13 as builder
+FROM python:3.13 AS builder
 
 RUN pip install poetry==2.0.0
 
@@ -14,9 +14,7 @@ RUN touch README.md
 
 RUN --mount=type=cache,target=$POETRY_CACHE_DIR poetry install --without dev --no-root
 
-RUN poetry --install
-
-FROM python:3.11-slim as runtime
+FROM python:3.13-slim AS runtime
 
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
@@ -24,5 +22,7 @@ ENV VIRTUAL_ENV=/app/.venv \
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 COPY . .
+
+EXPOSE 8000
 
 ENTRYPOINT ["gunicorn"]
