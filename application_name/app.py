@@ -26,7 +26,7 @@ def create_app(config_filename="config.toml", config_override={}):
     app.config.from_envvar("APP_CONFIG_FILE", silent=True)
 
     app.wsgi_app = SassMiddleware(
-        app.wsgi_app, {"app": ("static/sass", "static/css", "/static/css")}
+        app.wsgi_app, {"application_name": ("static/sass", "static/css", "/static/css")}
     )
 
     register_apis(app)

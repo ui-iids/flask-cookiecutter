@@ -2,7 +2,21 @@
 
 This template is intended as a jumping-off point for IIDS flask projects, or for more specialized templates.
 
-To use it, click the "Use Template" button on Github.
+## Usage
+
+
+
+## Features
+
+* [x] Flask App quick setup 
+* [x] Static page serving
+* [x] Compiled SCSS
+* [x] Optional Progressive Web Application serving
+* [] Offline PWA Behavior
+* [x] Automatic, versioned API documentation/specifications and interface
+* [] Deployable Docker file with Guincorn WSGI Host
+* [] Automatic test deployment
+* [] Automatic live deployment
 
 ## Structure
 
