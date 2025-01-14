@@ -1,8 +1,8 @@
 [tool.poetry]
 packages = [{ include = "app" }]
-name = "iids-flask-cookiecutter"
+name = "project_name"
 version = "0.1"
-description = "IIDS Cookiecutter Python-Flask Project"
+description = "project_description"
 authors = ["cbradford@uidaho.edu"]
 
 [build-system]
