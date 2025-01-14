@@ -4,7 +4,7 @@
         {
             "label": "dev-server",
             "type": "shell",
-            "command": "flask --app project_name run --debug",
+            "command": "poetry run flask --app project_name run --debug",
             "problemMatcher": {
                 "owner": "python",
                 "fileLocation": "absolute",
@@ -49,7 +49,7 @@
         {
             "label": "test coverage",
             "type": "shell",
-            "command": "coverage run --branch -m pytest",
+            "command": "poetry run coverage run --branch -m pytest",
             "runOptions": {
                 "instanceLimit": 1
             },
@@ -64,7 +64,7 @@
         {
             "label": "test coverage view",
             "type": "shell",
-            "command": "coverage report",
+            "command": "poetry run coverage report",
             "dependsOn": [
                 "test coverage"
             ],
@@ -75,7 +75,7 @@
         {
             "label": "test coverage html render",
             "type": "shell",
-            "command": "coverage html",
+            "command": "poetry run coverage html",
             "dependsOn": [
                 "test coverage"
             ],

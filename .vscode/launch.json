@@ -8,12 +8,14 @@
             "name": "Python Debugger: Flask",
             "type": "debugpy",
             "request": "launch",
-            "module": "flask",
+            "module": "poetry",
             "env": {
                 "FLASK_APP": "project_name",
                 "FLASK_DEBUG": "1"
             },
             "args": [
+                "run",
+                "flask",
                 "run",
                 "-h",
                 "localhost",
