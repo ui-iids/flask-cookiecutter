@@ -25,9 +25,22 @@ def create_app(config_filename="config.toml", config_override={}):
     app.config.from_object(namedtuple("Config", config_override)(**config_override))
     app.config.from_envvar("APP_CONFIG_FILE", silent=True)
 
-    app.wsgi_app = SassMiddleware(
-        app.wsgi_app, {"project_name": ("static/sass", "static/css", "/static/css")}
-    )
+    # For debug purposes, we compile CSS every time it changes
+    app.wsgi_app,
+    if app.debug == True:
+        from sassutils.wsgi import SassMiddleware
+
+        app.wsgi_app = SassMiddleware(
+            app.wsgi_app,
+            {
+                "project_name": {
+                    "sass_path": "static/sass",
+                    "css_path": "static/css",
+                    "wsgi_path": "/static/css",
+                    "strip_extension": True,
+                }
+            },
+        )
 
     register_apis(app)
 

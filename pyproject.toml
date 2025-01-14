@@ -24,8 +24,8 @@ coverage = "^7.6.10"
 black = "^24.10.0"
 
 [tool.coverage.run]
-source = ["app"]
-omit = ["/app/static/*", "/app/templates/*"]
+source = ["project_name"]
+omit = ["/project_name/static/*", "/project_name/templates/*"]
 
 [tool.coverage.report]
 fail_under = 95
