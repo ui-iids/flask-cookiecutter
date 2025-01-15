@@ -16,7 +16,7 @@ Here's a rough wishlist for a feature-complete flask cookiecutter:
 * [x] Optional Progressive Web Application serving
 * [ ] Offline PWA Behavior
 * [x] Automatic, versioned API documentation/specifications and interface
-* [ ] Deployable Docker file with Guincorn WSGI Host
+* [x] Deployable Docker file with Guincorn WSGI Host
 * [ ] Automatic test deployment
 * [ ] Automatic live deployment
 * [ ] Database connection template
