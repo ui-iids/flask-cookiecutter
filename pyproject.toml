@@ -1,5 +1,5 @@
 [tool.poetry]
-packages = [{ include = "app" }]
+packages = [{ include = "project_name" }]
 name = "project_name"
 version = "0.1"
 description = "project_description"
