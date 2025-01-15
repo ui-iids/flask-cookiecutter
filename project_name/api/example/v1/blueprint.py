@@ -1,4 +1,4 @@
-from flask_smorest import Api, Blueprint, abort
+from flask_smorest import Api, Blueprint
 from flask.views import MethodView
 import marshmallow as ma
 from flask import Flask

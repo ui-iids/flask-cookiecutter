@@ -2,7 +2,6 @@ from flask import Flask, render_template, send_file
 from tomllib import load as tomlload
 from werkzeug import exceptions
 from collections import namedtuple
-from sassutils.wsgi import SassMiddleware
 
 from .pages import pages
 from .api import register_apis
@@ -26,8 +25,7 @@ def create_app(config_filename="config.toml", config_override={}):
     app.config.from_envvar("APP_CONFIG_FILE", silent=True)
 
     # For debug purposes, we compile CSS every time it changes
-    app.wsgi_app,
-    if app.debug == True:
+    if app.debug:
         from sassutils.wsgi import SassMiddleware
 
         app.wsgi_app = SassMiddleware(

@@ -15,13 +15,16 @@ flask = "^3.1.0"
 flask-smorest = "^0.45.0"
 gunicorn = "^23.0.0"
 pyyaml = "^6.0.2"
-libsass = "^0.23.0"
 setuptools = "^75.8.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 coverage = "^7.6.10"
-black = "^24.10.0"
+tox = "^4.23.2"
+mypy = "^1.14.1"
+libsass = "^0.23.0"
+pytest-sugar = "^1.0.0"
+ruff = "^0.9.1"
 
 [tool.coverage.run]
 source = ["project_name"]
@@ -29,3 +32,44 @@ omit = ["/project_name/static/*", "/project_name/templates/*"]
 
 [tool.coverage.report]
 fail_under = 95
+
+[tool.tox]
+requires = ["tox>=4.23.2"]
+env_list = ["format", "sass", "lint", "type", "3.13"]
+
+[tool.tox.testenv.format]
+description = "Format the code with Ruff"
+deps = ["ruff>=0.9.1"]
+skip_install = true
+commands = [["ruff", "format"]]
+
+[tool.tox.testenv.lint]
+description = "Lint the code with Ruff"
+deps = ["ruff>=0.9.1"]
+skip_install = true
+commands = [["ruff", "format"]]
+
+[tool.tox.testenv.sass]
+description = "Compile the CSS with libcss"
+deps = ["libsass>=0.23.0"]
+skip_install = true
+commands = [["python", "scripts/build_sass.py"]]
+
+[tool.tox.testenv.type]
+description = "Analyze the code with mypy"
+deps = ["mypy>=1.14.1"]
+commands = [["mypy", "project_name"]]
+
+[tool.tox.testenv.3.13]
+deps = ["pytest>=7", "pytest-sugar"]
+commands = [["pytest", "tests", "{posargs}"]]
+description = "Install pytest in a virtual environment and invoke it on the tests folder"
+
+[tool.mypy]
+follow_imports = "silent"
+ignore_missing_imports = true
+python_version = "3.13"
+strict_optional = false
+
+[tool.tox.gh.python]
+"3.13" = ["3.13", "format", "lint", "mypy"]

@@ -1,1 +1,1 @@
-from .blueprint import pages
+from .blueprint import pages as pages
