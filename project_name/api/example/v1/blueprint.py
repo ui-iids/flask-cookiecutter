@@ -2,7 +2,7 @@ from flask_smorest import Api, Blueprint, abort
 from flask.views import MethodView
 from marshmallow import Schema, fields
 from flask import Flask
-from project_name.models import db, People, Groups, PeopleGroups
+from project_name.models import db, People
 from textwrap import dedent
 
 api_prefix = "example"
