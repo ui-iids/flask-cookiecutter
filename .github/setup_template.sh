@@ -31,6 +31,7 @@ do
 done
 
 mv project_name $name
+mv -f project_templates/* .
 
 # This command runs only once on GHA!
 rm -rf .github/template.yml
