@@ -3,8 +3,16 @@ from tomllib import load as tomlload
 from werkzeug import exceptions
 from collections import namedtuple
 
+# Only needed if serving Pages
 from .pages import pages
+from flask_bootstrap import Bootstrap5 as Bootstrap
+
+# Only needed if serving APIs
 from .api import register_apis
+
+# Only needed if using a database.
+# For instructions on other databases or plugins,
+# including necessary packages, see `database.py`.
 from .database import register_database
 
 
@@ -12,13 +20,12 @@ def create_app(config_filename="config.toml", config_override={}):
     app = Flask(__name__)
 
     # Register Database
-    # * Remove this and `models.py`, `database.py` if database is unneeded.
-    # * Add `psycopg-binary` if PostGres is needed.
-    # * Add `geoalchemy2` if Geographic/Geometric queries are needed.
+    # * Remove if not using database.
     register_database(app)
 
     # Register Rendered Pages Blueprint
-    # * Remove if only need an API.
+    # * Remove if not serving pages.
+    Bootstrap(app)
     app.register_blueprint(pages)
 
     # Error Handlers

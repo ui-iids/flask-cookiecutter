@@ -9,25 +9,25 @@ body {
   width: 100%;
   padding: 0px;
   margin: 0px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   color: #191919;
   font-size: 21px; }
 
 a {
-  color: #F1B300;
+  color: #f1b300;
   font-weight: normal; }
 
 .main-header {
   width: 100%;
   background-color: #191919;
-  color: #F1B300;
+  color: #f1b300;
   font-size: 28pt;
   padding: 0px;
   margin: 0px;
   flex: none;
   max-height: 200px; }
   .main-header a {
-    color: #F1B300;
+    color: #f1b300;
     font-style: normal;
     text-decoration: none; }
   .main-header .app-title {
@@ -49,7 +49,7 @@ a {
 .main-footer {
   width: 100%;
   background-color: #191919;
-  color: #FFFFFF; }
+  color: #ffffff; }
   .main-footer .footer-content-wrap {
     text-align: center;
     display: flex;
@@ -66,25 +66,17 @@ a {
     max-width: 1024px;
     max-height: 100px; }
 
+.sidenav-container {
+  width: 200px; }
+
 .side-nav {
   height: 100%;
-  width: 200px;
-  flex-basis: 200px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  display: block;
   margin: 0;
   padding: 0;
   background-color: #323232;
   color: white;
   overflow: auto;
   font-size: 22pt; }
-  .side-nav.nav-open {
-    flex-basis: 200px;
-    width: 200px; }
-  .side-nav.nav-closed {
-    width: 0px;
-    flex-basis: 0px; }
   .side-nav ul {
     list-style-type: none;
     padding: 5px 0px;
@@ -94,9 +86,9 @@ a {
       margin: 0px;
       padding: 5px; }
       .side-nav ul li:hover {
-        background-color: #A0A0A0; }
+        background-color: #a0a0a0; }
       .side-nav ul li.hover, .side-nav ul li.active:hover, .side-nav ul li:focus-within, .side-nav ul li.active:focus-within {
-        background-color: #A0A0A0; }
+        background-color: #a0a0a0; }
       .side-nav ul li.active {
         background-color: #808080; }
   .side-nav .side-nav-label {

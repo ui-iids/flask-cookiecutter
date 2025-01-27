@@ -3,8 +3,7 @@
 ('/','index','Index'),
 ('/page','page','Page')
 ] -%}
-
-<div>
+<nav class="side-nav" id="sidenav">
     <ul id="left-navigation">
         {% for href, id, caption in navigation_bar %}
         <li {% if id==active_page %} class="active" {% endif %}>
@@ -14,4 +13,4 @@
         </li>
         {% endfor %}
     </ul>
-</div>
+</nav>
