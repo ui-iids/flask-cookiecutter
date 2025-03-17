@@ -1,6 +1,6 @@
-from unittest.mock import patch
-from project_name.wsgi import app
 from flask import Flask
+
+from project_name.wsgi import app
 
 
 def test_wsgi():

@@ -1,7 +1,9 @@
 from tempfile import NamedTemporaryFile
-from project_name import create_app
-from sassutils.wsgi import SassMiddleware
+
 from flask import Flask
+from sassutils.wsgi import SassMiddleware
+
+from project_name import create_app
 
 
 def test_create_app_handles_no_file():
@@ -17,7 +19,7 @@ def test_create_app_handles_config():
         app = create_app(config_file.name, {"OVERRIDED_PARAM": 1, "OTHER_PARAM": 2})
         app.config.update({"TESTING": True})
         assert isinstance(app, Flask)
-        assert app.config.get("PYTEST_EXAMPLE_CONFIG") == True
+        assert app.config.get("PYTEST_EXAMPLE_CONFIG")
         assert app.config.get("OTHER_PARAM") == 2
         assert app.config.get("OVERRIDED_PARAM") == 1
 

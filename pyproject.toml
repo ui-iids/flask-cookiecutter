@@ -39,31 +39,31 @@ fail_under = 95
 requires = ["tox>=4.23.2"]
 env_list = ["format", "sass", "lint", "type", "3.13"]
 
-[tool.tox.testenv.format]
+[tool.tox.env.format]
 description = "Format the code with Ruff"
 deps = ["ruff>=0.9.1"]
 skip_install = true
 commands = [["ruff", "format"]]
 
-[tool.tox.testenv.lint]
+[tool.tox.env.lint]
 description = "Lint the code with Ruff"
 deps = ["ruff>=0.9.1"]
 skip_install = true
-commands = [["ruff", "format"]]
+commands = [["ruff", "check"]]
 
-[tool.tox.testenv.sass]
+[tool.tox.env.sass]
 description = "Compile the CSS with libcss"
 deps = ["libsass>=0.23.0"]
 skip_install = true
 commands = [["python", "scripts/build_sass.py"]]
 
-[tool.tox.testenv.type]
+[tool.tox.env.type]
 description = "Analyze the code with mypy"
 deps = ["mypy>=1.14.1"]
 commands = [["mypy", "project_name"]]
 
-[tool.tox.testenv.3.13]
-deps = ["pytest>=7", "pytest-sugar"]
+[tool.tox.env.3.13]
+deps = ["pytest>=7", "pytest-sugar", "libsass"]
 commands = [["pytest", "tests", "{posargs}"]]
 description = "Install pytest in a virtual environment and invoke it on the tests folder"
 

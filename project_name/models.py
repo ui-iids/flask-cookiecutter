@@ -1,9 +1,11 @@
+from typing import TYPE_CHECKING
+
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (
     ForeignKey,
     MetaData,
 )
-from sqlalchemy.orm import mapped_column, DeclarativeBase, Mapped
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class Base(DeclarativeBase):
@@ -20,21 +22,27 @@ db = SQLAlchemy(
     },
 )
 
+# MyPy workaround for class issue
+if TYPE_CHECKING:
+    from flask_sqlalchemy.model import Model
+else:
+    Model = db.Model
 
-class People(db.Model):
+
+class People(Model):
     __tablename__ = "people"
     user_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     email: Mapped[str] = mapped_column()
     username: Mapped[str] = mapped_column()
 
 
-class Groups(db.Model):
+class Groups(Model):
     __tablename__ = "groups"
     group_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column()
 
 
-class PeopleGroups(db.Model):
+class PeopleGroups(Model):
     __tablename__ = "people_groups"
     group_id: Mapped[int] = mapped_column(
         ForeignKey("groups.group_id"), primary_key=True
