@@ -1,7 +1,7 @@
 {# Set navigation items here, format href, id, menu key #}
 {% set navigation_bar = [
-('/','index','Index'),
-('/page','page','Page')
+(url_for('pages.index'),'index','Index'),
+(url_for('pages.example_page'),'page','Page')
 ] -%}
 <nav class="side-nav" id="sidenav">
     <ul id="left-navigation">
