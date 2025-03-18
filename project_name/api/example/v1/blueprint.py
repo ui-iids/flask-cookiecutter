@@ -1,9 +1,11 @@
-from flask_smorest import Api, Blueprint, abort
-from flask.views import MethodView
-from marshmallow import Schema, fields
-from flask import Flask
-from project_name.models import db, People
 from textwrap import dedent
+
+from flask import Flask
+from flask.views import MethodView
+from flask_smorest import Api, Blueprint, abort
+from marshmallow import Schema, fields
+
+from project_name.models import People, db
 
 api_prefix = "example"
 api_title = "Example API"
@@ -159,7 +161,7 @@ class User(MethodView):
         # Arguments
         * `user_id: int`: The User ID to delete
         """
-        success = db.session.query(People).where(People.user_id.is_(user_id)).delete()
+        success = db.session.query(People).where(People.user_id == user_id).delete()
         if success:
             db.session.commit()
             return True
@@ -177,10 +179,10 @@ class Users(MethodView):
 
         Get all users.
         """
-        query = db.Query(People)
+        query = db.session.query(People)
         # SQLAlchemy ORM is returning a list of lists of length 1
         # There's got to be a better way
-        return list(next(zip(*db.session.execute(query).all())))
+        return [i for j in query.all() for i in j]
 
 
 def register_api(app: Flask):

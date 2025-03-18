@@ -10,7 +10,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">3.11"
+python = ">=3.11,<4.0"
 flask = "^3.1.0"
 flask-smorest = "^0.45.0"
 gunicorn = "^23.0.0"
@@ -27,6 +27,7 @@ mypy = "^1.14.1"
 libsass = "^0.23.0"
 pytest-sugar = "^1.0.0"
 ruff = "^0.9.1"
+mock-alchemy = "^0.2.6"
 
 [tool.coverage.run]
 source = ["project_name"]
@@ -63,7 +64,7 @@ deps = ["mypy>=1.14.1"]
 commands = [["mypy", "project_name"]]
 
 [tool.tox.env.3.13]
-deps = ["pytest>=7", "pytest-sugar", "libsass"]
+deps = ["pytest>=7", "pytest-sugar", "libsass", "mock-alchemy"]
 commands = [["pytest", "tests", "{posargs}"]]
 description = "Install pytest in a virtual environment and invoke it on the tests folder"
 

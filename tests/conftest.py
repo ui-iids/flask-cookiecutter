@@ -1,6 +1,7 @@
-import pytest
 import sys
 from pathlib import Path
+
+import pytest
 from flask import Flask
 
 sys.path.append(str(Path(__file__).absolute().parent.parent))
