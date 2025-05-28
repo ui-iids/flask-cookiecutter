@@ -45,7 +45,7 @@ to install all relevant dev dependencies.
 To run the project as a developer, run:
 
 ```bash
-poetry run flask --app project_name run --debug
+uv run flask --app project_name run --debug
 ```
 
 To run the project as a standalone server, run:

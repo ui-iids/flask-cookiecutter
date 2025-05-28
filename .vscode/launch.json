@@ -8,7 +8,7 @@
             "name": "Python Debugger: Flask",
             "type": "debugpy",
             "request": "launch",
-            "module": "poetry",
+            "module": "uv",
             "env": {
                 "FLASK_APP": "project_name",
                 "FLASK_DEBUG": "1"
