@@ -1,33 +1,44 @@
-[tool.poetry]
-packages = [{ include = "project_name" }]
+[project]
 name = "project_name"
 version = "0.1"
 description = "project_description"
-authors = ["cbradford@uidaho.edu"]
+dependencies = [
+    "flask>=3.1.0",
+    "flask-smorest>=0.45.0",
+    "pyyaml>=6.0.2",
+    "setuptools>=75.8.0",
+    "flask-sqlalchemy>=3.1.1",
+    "bootstrap-flask>=2.4.1",
+]
+requires-python = ">=3.12,<4.0"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[[project.urls]]
+homepage = "https://github.com/northwestknowledgenetwork/project_name"
 
-[tool.poetry.dependencies]
-python = ">=3.11,<4.0"
-flask = "^3.1.0"
-flask-smorest = "^0.45.0"
-gunicorn = "^23.0.0"
-pyyaml = "^6.0.2"
-setuptools = "^75.8.0"
-flask-sqlalchemy = "^3.1.1"
-bootstrap-flask = "^2.4.1"
+[[project.authors]]
+name = "Clinton Bradford"
+email = "cbradford@uidaho.edu"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.4"
-coverage = "^7.6.10"
-tox = "^4.23.2"
-mypy = "^1.14.1"
-libsass = "^0.23.0"
-pytest-sugar = "^1.0.0"
-ruff = "^0.9.1"
-mock-alchemy = "^0.2.6"
+[dependency-groups]
+dev = [
+    "tox>=4.23.2",
+    "libsass>=0.23.0",
+]
+test = [
+    "mock-alchemy>=0.2.6",
+    "pytest>=8.3.4",
+]
+coverage = [
+    "coverage>=7.6.10",
+    "pytest-sugar>=1.0.0",
+]
+lint = [
+    "mypy>=1.14.1",
+    "ruff>=0.9.1",
+]
+serve = [
+    "gunicorn>=23.0.0",
+]
 
 [tool.coverage.run]
 source = ["project_name"]

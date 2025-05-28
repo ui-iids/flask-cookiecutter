@@ -1,18 +1,13 @@
 FROM python:3.13 AS builder
 
-RUN pip install poetry==2.0.0
-
-ENV POETRY_NO_INTERACTION=1 \
-    POETRY_VIRTUALENVS_IN_PROJECT=1 \
-    POETRY_VIRTUALENVS_CREATE=1 \
-    POETRY_CACHE_DIR=/tmp/poetry_cache
+RUN pip install uv
 
 WORKDIR /app
 
 COPY pyproject.toml ./
 RUN touch README.md
 
-RUN --mount=type=cache,target=$POETRY_CACHE_DIR poetry install --without dev --no-root
+RUN uv sync --no-dev --group serve
 
 FROM python:3.13-slim AS runtime
 
