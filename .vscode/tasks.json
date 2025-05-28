@@ -4,7 +4,7 @@
         {
             "label": "dev-server",
             "type": "shell",
-            "command": "poetry run flask --app project_name run --debug",
+            "command": "uv run flask --app project_name run --debug",
             "problemMatcher": {
                 "owner": "python",
                 "fileLocation": "absolute",
@@ -49,7 +49,7 @@
         {
             "label": "test coverage",
             "type": "shell",
-            "command": "poetry run coverage run --branch -m pytest",
+            "command": "uv run coverage run --branch -m pytest",
             "runOptions": {
                 "instanceLimit": 1
             },
@@ -64,7 +64,7 @@
         {
             "label": "test coverage view",
             "type": "shell",
-            "command": "poetry run coverage report",
+            "command": "uv run coverage report",
             "dependsOn": [
                 "test coverage"
             ],
@@ -75,7 +75,7 @@
         {
             "label": "test coverage html render",
             "type": "shell",
-            "command": "poetry run coverage html",
+            "command": "uv run coverage html",
             "dependsOn": [
                 "test coverage"
             ],
@@ -86,7 +86,7 @@
         {
             "label": "test coverage html serve",
             "type": "shell",
-            "command": "python -m http.server --directory htmlcov 5002",
+            "command": "uv run python -m http.server --directory htmlcov 5002",
             "isBackground": true,
             "runOptions": {
                 "instanceLimit": 1
@@ -114,7 +114,7 @@
         {
             "label": "test coverage html view",
             "type": "shell",
-            "command": "python -m webbrowser http://localhost:5002/",
+            "command": "uv run python -m webbrowser http://localhost:5002/",
             "group": "test",
             "dependsOn": [
                 "test coverage html serve"
