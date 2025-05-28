@@ -12,12 +12,30 @@ dependencies = [
 ]
 requires-python = ">=3.12,<4.0"
 
-[[project.urls]]
-homepage = "https://github.com/northwestknowledgenetwork/project_name"
+[build_system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["package_name"]
+
+[tool.setuptools.package-data]
+"*" = ["*.css", "*.js", "*.ts", "*.html", "*.png", "*.svg", "*.jpg"]
+
+[project.urls]
+"Homepage" = "https://github.com/clintonbradford/project_name"
+"Documentation" = "https://clintonbradford.github.io/project_name"
 
 [[project.authors]]
 name = "Clinton Bradford"
 email = "cbradford@uidaho.edu"
+
+[tool.uv]
+default-groups = ["dev", "test", "coverage", "lint"]
 
 [dependency-groups]
 dev = [

@@ -7,7 +7,7 @@ WORKDIR /app
 COPY pyproject.toml ./
 RUN touch README.md
 
-RUN uv sync --no-dev --group serve
+RUN uv sync --no-default-groups --group serve
 
 FROM python:3.13-slim AS runtime
 
