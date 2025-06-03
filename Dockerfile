@@ -11,12 +11,17 @@ RUN uv sync --no-default-groups --group serve
 
 FROM python:3.13-slim AS runtime
 
+WORKDIR /app
+
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
-COPY . .
+COPY project_name project_name
+
+COPY gunicorn.conf.py .
+COPY pyproject.toml .
 
 EXPOSE 8000
 
