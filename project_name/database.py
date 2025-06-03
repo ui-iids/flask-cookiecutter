@@ -1,6 +1,7 @@
-from .models import db
 from os import environ
 from os.path import isfile
+
+from .models import db
 
 # Register a database by URI,
 # Passed as a secret file or environment variable.
