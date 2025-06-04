@@ -12,7 +12,7 @@ dependencies = [
 ]
 requires-python = ">=3.12,<4.0"
 
-[build_system]
+[build-system]
 requires = ["setuptools>=80", "wheel"]
 build-backend = "setuptools.build_meta"
 
@@ -27,8 +27,8 @@ include = ["package_name"]
 "*" = ["*.css", "*.js", "*.ts", "*.html", "*.png", "*.svg", "*.jpg"]
 
 [project.urls]
-"Homepage" = "https://github.com/clintonbradford/project_name"
-"Documentation" = "https://clintonbradford.github.io/project_name"
+"Homepage" = "https://github.com/northwestknowledgenetwork/project_name"
+# "Documentation" = "https://northwestknowledgenetwork.github.io/project_name"
 
 [[project.authors]]
 name = "Clinton Bradford"
