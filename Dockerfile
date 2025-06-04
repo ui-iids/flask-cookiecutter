@@ -32,6 +32,9 @@ COPY pyproject.toml .
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 
+# Setup python env vars
+ENV PYTHONUNBUFFERED=1
+
 # Copy the virtual environment
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
