@@ -35,11 +35,15 @@ name = "Clinton Bradford"
 email = "cbradford@uidaho.edu"
 
 [tool.uv]
-default-groups = ["dev", "test", "coverage", "lint"]
+default-groups = ["dev", "sass", "test", "coverage", "lint"]
 
 [dependency-groups]
 dev = [
     "tox>=4.23.2",
+    "tox-uv>=1.26.0",
+    "uv>=0.7.11",
+]
+sass = [
     "libsass>=0.23.0",
 ]
 test = [
@@ -67,34 +71,34 @@ omit = ["/project_name/static/*", "/project_name/templates/*"]
 fail_under = 95
 
 [tool.tox]
-requires = ["tox>=4.23.2"]
+requires = ["tox-uv", "uv"]
 env_list = ["format", "sass", "lint", "type", "3.13"]
 
 [tool.tox.env.format]
 description = "Format the code with Ruff"
-deps = ["ruff>=0.9.1"]
+dependency_groups = ["lint"]
 skip_install = true
 commands = [["ruff", "format"]]
 
 [tool.tox.env.lint]
 description = "Lint the code with Ruff"
-deps = ["ruff>=0.9.1"]
+dependency_groups = ["lint"]
 skip_install = true
 commands = [["ruff", "check"]]
 
 [tool.tox.env.sass]
 description = "Compile the CSS with libcss"
-deps = ["libsass>=0.23.0"]
+dependency_groups = ["sass"]
 skip_install = true
 commands = [["python", "scripts/build_sass.py"]]
 
 [tool.tox.env.type]
 description = "Analyze the code with mypy"
-deps = ["mypy>=1.14.1"]
+dependency_groups = ["lint"]
 commands = [["mypy", "project_name"]]
 
 [tool.tox.env.3.13]
-deps = ["pytest>=7", "pytest-sugar", "libsass", "mock-alchemy"]
+dependency_groups = ["coverage","test", "dev","sass"]
 commands = [["pytest", "tests", "{posargs}"]]
 description = "Install pytest in a virtual environment and invoke it on the tests folder"
 
