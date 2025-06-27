@@ -54,4 +54,4 @@ docker image rm project_name
 
 Clinton Bradford, cbradford@uidaho.edu
 
-Based on the [IIDS Flask Cookiecutter](https://github.com/northwest-knowledge-network/iids-flask-cookiecutter)
+Based on the [IIDS Flask Cookiecutter](https://github.com/ui-iids/flask-cookiecutter)
