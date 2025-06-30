@@ -55,4 +55,6 @@ USER gunicorn
 
 EXPOSE 8000
 
+ENV GUNICORN_WORKERS=1 
+
 ENTRYPOINT ["gunicorn"]
