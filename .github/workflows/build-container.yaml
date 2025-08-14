@@ -9,6 +9,7 @@ on:
       - "project_templates/**"
       - ".github/**"
       - ".gitignore"
+      - "sonar-project.properties"
   workflow_dispatch: # Optional: Allow manual triggering
 
 jobs:
