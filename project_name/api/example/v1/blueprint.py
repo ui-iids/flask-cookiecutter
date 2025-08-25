@@ -10,8 +10,8 @@ from project_name.models import People, db
 
 api_title = "Example API"
 # By default, we set the api prefix and version number from the path.
-api_prefix = PurePath(__file__).parent.parent.name.replace("_","-").lower()
-api_version = PurePath(__file__).parent.name.replace("_","-").lower()
+api_prefix = PurePath(__file__).parent.parent.name.replace("_", "-").lower()
+api_version = PurePath(__file__).parent.name.replace("_", "-").lower()
 
 blp = Blueprint(
     api_prefix,
