@@ -193,7 +193,7 @@ def register_api(app: Flask):
         "openapi_version": "3.1.1",
         "api_title": api_title,
         "openapi_url_prefix": f"/{api_prefix}/{api_version}/docs/",
-        "openapi_swagger_ui_path": "ui",
+        "openapi_swagger_ui_path": "",
         "openapi_json_path": "openapi.json",
         "openapi_swagger_ui_version": "5.18.2",
         "openapi_swagger_ui_url": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.18.2/",
