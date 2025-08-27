@@ -71,7 +71,7 @@ omit = ["/project_name/static/*", "/project_name/templates/*", "/tests/*"]
 fail_under = 80
 
 [tool.pytest.ini_options]
-addopts = "--cov=manifest_manager --cov-report xml"
+addopts = "--cov=project_name --cov-report xml"
 
 [tool.tox]
 requires = ["tox-uv", "uv"]
