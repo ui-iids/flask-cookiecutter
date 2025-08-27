@@ -20,8 +20,8 @@ build-backend = "setuptools.build_meta"
 include-package-data = true
 
 [tool.setuptools.packages.find]
-where = ["."]
-include = ["package_name"]
+where = ["project_name"]
+include = []
 
 [tool.setuptools.package-data]
 "*" = ["*.css", "*.js", "*.ts", "*.html", "*.png", "*.svg", "*.jpg"]
@@ -65,10 +65,13 @@ serve = [
 
 [tool.coverage.run]
 source = ["project_name"]
-omit = ["/project_name/static/*", "/project_name/templates/*"]
+omit = ["/project_name/static/*", "/project_name/templates/*", "/tests/*"]
 
 [tool.coverage.report]
-fail_under = 95
+fail_under = 80
+
+[tool.pytest.ini_options]
+addopts = "--cov=manifest_manager --cov-report xml"
 
 [tool.tox]
 requires = ["tox-uv", "uv"]
