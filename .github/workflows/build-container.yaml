@@ -10,6 +10,19 @@ on:
       - ".github/**"
       - ".gitignore"
       - "sonar-project.properties"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+    paths-ignore:
+      - "manifest/**"
+      - ".vscode/**"
+      - "project_templates/**"
+      - ".github/**"
+      - ".gitignore"
+      - "sonar-project.properties"
   workflow_dispatch: # Optional: Allow manual triggering
 
 jobs:
@@ -36,5 +49,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }},ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          tags: ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }},ghcr.io/${{ github.repository }}:${{ github.head_ref || github.ref_name }}
           file: ./Dockerfile # Specify your Dockerfile path
