@@ -24,7 +24,7 @@ original_description="project_description"
 
 # Convert underscores to dashes, and upper to lowercase
 dash_name=$(echo $name | tr '[:upper:]' '[:lower:]' | tr '_' '-')
-underscore_name=$(echo $name | tr '[:lower:]' '[:upper:]' | tr '-' '_')
+underscore_name=$(echo $name | tr '[:upper:]' '[:lower:]' | tr '-' '_')
 # for filename in $(find . -name "*.*") 
 for filename in $(git ls-files) 
 do
