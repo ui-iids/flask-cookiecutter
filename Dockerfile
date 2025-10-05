@@ -1,11 +1,7 @@
 # We use a separate image to build the project.
 # This ensures that build dependencies from Python are not included.
 # Build dependencies within the project will still come through.
-FROM python:3.13 AS builder
-
-# This project uses UV as its builder.
-# Note: This might stop working in a future version of Ubuntu due to python global installs being forbidden.
-RUN pip install uv
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm AS builder
 
 # Change working directory to `/app`
 WORKDIR /app
