@@ -2,7 +2,9 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main # Or your default branch
+      - main # Your default branch
+    tags:
+      - "v*.*.*" # Trigger on semver tags like v1.0.0, v2.3.4
     paths-ignore:
       - "manifest/**"
       - ".vscode/**"
@@ -23,7 +25,7 @@ on:
       - ".github/**"
       - ".gitignore"
       - "sonar-project.properties"
-  workflow_dispatch: # Optional: Allow manual triggering
+  workflow_dispatch: # Optional manual trigger
 
 jobs:
   build-and-push:
@@ -31,14 +33,24 @@ jobs:
     permissions:
       contents: read
       packages: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Set outputs
         id: vars
-        run: | 
+        run: |
           echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           echo "sanitized_ref=$(echo '${{ github.head_ref || github.ref_name }}' | tr '/' '-')" >> $GITHUB_OUTPUT
+          
+          # Detect if this is a semver tag
+          if [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref_name }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "is_release=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_release=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -51,5 +63,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }},ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sanitized_ref }}
-          file: ./Dockerfile # Specify your Dockerfile path
+          file: ./Dockerfile
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }}
+            ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sanitized_ref }}
+            ${{ steps.vars.outputs.is_release == 'true' && format('ghcr.io/{0}:{1}', github.repository, github.ref_name) || '' }}
+            ${{ steps.vars.outputs.is_release == 'true' && format('ghcr.io/{0}:latest', github.repository) || '' }}
