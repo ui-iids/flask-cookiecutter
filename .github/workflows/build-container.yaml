@@ -2,9 +2,9 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main # Your default branch
+      - main
     tags:
-      - "v*.*.*" # Trigger on semver tags like v1.0.0, v2.3.4
+      - "v*.*.*"
     paths-ignore:
       - "manifest/**"
       - ".vscode/**"
@@ -25,7 +25,7 @@ on:
       - ".github/**"
       - ".gitignore"
       - "sonar-project.properties"
-  workflow_dispatch: # Optional manual trigger
+  workflow_dispatch: # Optional: Allow manual triggering
 
 jobs:
   build-and-push:
@@ -33,24 +33,46 @@ jobs:
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            # 1. Main branch: snapshot-latest and short SHA
+            type=raw,value=snapshot-latest,enable={{is_default_branch}}
+            type=raw,value=main,enable={{is_default_branch}}
+            type=sha,format=short,prefix=,enable={{is_default_branch}}
 
-      - name: Set outputs
-        id: vars
-        run: |
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          echo "sanitized_ref=$(echo '${{ github.head_ref || github.ref_name }}' | tr '/' '-')" >> $GITHUB_OUTPUT
-          
-          # Detect if this is a semver tag
-          if [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref_name }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "is_release=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_release=false" >> $GITHUB_OUTPUT
-          fi
+            # 2. Semver tags (triggered on tag events)
+            # Provides: v1.2.3, v1.2, and v1
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
 
+            # 3. Other branches: branch-latest
+            # Excludes 'main' to avoid collision with Rule 1
+            type=ref,event=branch,suffix=-latest,enable=${{ github.ref != 'refs/heads/main' }}
+            
+            # 4. Other branches: branch-SHA
+            # Uses the 'ref' type for branch name and 'sha' for the commit
+            type=ref,event=branch,suffix=-{{sha}},enable=${{ github.ref != 'refs/heads/main' }}
+
+            # 5. Pull Requests: pr-{number}
+            type=ref,event=pr
+
+            # 6. Pull Requests: pr-{number}-{sha}
+            type=ref,event=pr,suffix=-{{sha}}
+
+            # 7. Pull Requests: {branch}
+            type=raw,value=${{ github.head_ref }},enable=${{ github.event_name == 'pull_request' }}
+          flavor:
+            # Prevents the action from automatically adding the default 'latest' tag
+            # so you can manage it strictly through your semver/branch rules.
+            latest=false
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -59,13 +81,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v5
         with:
           context: .
-          push: true
           file: ./Dockerfile
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }}
-            ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sanitized_ref }}
-            ${{ steps.vars.outputs.is_release == 'true' && format('ghcr.io/{0}:{1}', github.repository, github.ref_name) || '' }}
-            ${{ steps.vars.outputs.is_release == 'true' && format('ghcr.io/{0}:latest', github.repository) || '' }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
