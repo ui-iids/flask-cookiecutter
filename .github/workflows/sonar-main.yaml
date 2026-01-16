@@ -31,7 +31,7 @@ jobs:
       - name: Run test suite
         run: tox run --skip-pkg-install
         continue-on-error: true
-      - uses: SonarSource/sonarqube-scan-action@v5
+      - uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
