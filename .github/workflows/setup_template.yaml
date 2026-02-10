@@ -4,6 +4,10 @@ on: [push]
 
 permissions: write-all
 
+concurrency:
+  group: setup-template
+  cancel-in-progress: true
+
 jobs:
   rename-project:
     if: ${{ !contains (github.repository, 'cookiecutter') }}
