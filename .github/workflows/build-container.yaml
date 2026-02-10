@@ -39,6 +39,10 @@ jobs:
       - name: Docker metadata
         id: meta
         uses: docker/metadata-action@v5
+        env:
+          DOCKER_METADATA_SHORT_SHA_LENGTH: 8
+          # Ensure we use the PR branch Head SHA, not the GitHub merge commit SHA
+          DOCKER_METADATA_PR_HEAD_SHA: true
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
